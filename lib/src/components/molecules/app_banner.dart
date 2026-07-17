@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/app_semantic_colors.dart';
 import '../../tokens/tokens.dart';
 
 enum AppBannerVariant { info, success, warning, error }
@@ -22,25 +23,28 @@ class AppBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final semanticColors = context.appSemanticColors;
+    final errorColor = Theme.of(context).colorScheme.error;
+
     final (bg, iconColor, icon) = switch (variant) {
       AppBannerVariant.info => (
-        AppColors.info.withValues(alpha: 0.12),
-        AppColors.info,
+        semanticColors.info.withValues(alpha: 0.12),
+        semanticColors.info,
         Icons.info_outline,
       ),
       AppBannerVariant.success => (
-        AppColors.success.withValues(alpha: 0.12),
-        AppColors.success,
+        semanticColors.success.withValues(alpha: 0.12),
+        semanticColors.success,
         Icons.check_circle_outline,
       ),
       AppBannerVariant.warning => (
-        AppColors.warning.withValues(alpha: 0.12),
-        AppColors.warning,
+        semanticColors.warning.withValues(alpha: 0.12),
+        semanticColors.warning,
         Icons.warning_amber_outlined,
       ),
       AppBannerVariant.error => (
-        AppColors.error.withValues(alpha: 0.12),
-        AppColors.error,
+        errorColor.withValues(alpha: 0.12),
+        errorColor,
         Icons.error_outline,
       ),
     };

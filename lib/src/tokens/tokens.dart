@@ -1,3 +1,4 @@
+export 'app_brand_palette.dart';
 export 'app_colors.dart';
 export 'app_spacing.dart';
 export 'app_radius.dart';

@@ -1,82 +1,104 @@
 import 'package:flutter/material.dart';
 
 import '../tokens/tokens.dart';
+import 'app_semantic_colors.dart';
 
 abstract final class AppTheme {
-  static ThemeData light() => ThemeData(
-    useMaterial3: true,
-    colorScheme: _lightColorScheme,
-    textTheme: _textTheme,
-    scaffoldBackgroundColor: AppColors.backgroundLight,
-    appBarTheme: _appBarTheme(isLight: true),
-    cardTheme: _cardTheme(isLight: true),
-    inputDecorationTheme: _inputDecorationTheme(isLight: true),
-    chipTheme: _chipTheme(isLight: true),
-    elevatedButtonTheme: _elevatedButtonTheme,
-    outlinedButtonTheme: _outlinedButtonTheme,
-    textButtonTheme: _textButtonTheme,
-    dividerTheme: _dividerTheme(isLight: true),
-  );
+  static ThemeData light({AppBrandPalette palette = const AppBrandPalette()}) =>
+      ThemeData(
+        useMaterial3: true,
+        colorScheme: _lightColorScheme(palette),
+        textTheme: _textTheme,
+        scaffoldBackgroundColor: palette.backgroundLight,
+        appBarTheme: _appBarTheme(isLight: true, palette: palette),
+        cardTheme: _cardTheme(isLight: true, palette: palette),
+        inputDecorationTheme: _inputDecorationTheme(
+          isLight: true,
+          palette: palette,
+        ),
+        chipTheme: _chipTheme(isLight: true, palette: palette),
+        elevatedButtonTheme: _elevatedButtonTheme(palette),
+        outlinedButtonTheme: _outlinedButtonTheme(palette),
+        textButtonTheme: _textButtonTheme(palette),
+        dividerTheme: _dividerTheme(isLight: true, palette: palette),
+        extensions: <ThemeExtension<dynamic>>[_semanticColors(palette)],
+      );
 
-  static ThemeData dark() => ThemeData(
-    useMaterial3: true,
-    colorScheme: _darkColorScheme,
-    textTheme: _textTheme,
-    scaffoldBackgroundColor: AppColors.backgroundDark,
-    appBarTheme: _appBarTheme(isLight: false),
-    cardTheme: _cardTheme(isLight: false),
-    inputDecorationTheme: _inputDecorationTheme(isLight: false),
-    chipTheme: _chipTheme(isLight: false),
-    elevatedButtonTheme: _elevatedButtonTheme,
-    outlinedButtonTheme: _outlinedButtonTheme,
-    textButtonTheme: _textButtonTheme,
-    dividerTheme: _dividerTheme(isLight: false),
-  );
+  static ThemeData dark({AppBrandPalette palette = const AppBrandPalette()}) =>
+      ThemeData(
+        useMaterial3: true,
+        colorScheme: _darkColorScheme(palette),
+        textTheme: _textTheme,
+        scaffoldBackgroundColor: palette.backgroundDark,
+        appBarTheme: _appBarTheme(isLight: false, palette: palette),
+        cardTheme: _cardTheme(isLight: false, palette: palette),
+        inputDecorationTheme: _inputDecorationTheme(
+          isLight: false,
+          palette: palette,
+        ),
+        chipTheme: _chipTheme(isLight: false, palette: palette),
+        elevatedButtonTheme: _elevatedButtonTheme(palette),
+        outlinedButtonTheme: _outlinedButtonTheme(palette),
+        textButtonTheme: _textButtonTheme(palette),
+        dividerTheme: _dividerTheme(isLight: false, palette: palette),
+        extensions: <ThemeExtension<dynamic>>[_semanticColors(palette)],
+      );
+
+  // ── Semantic colors extension ───────────────────────────────────────────
+
+  static AppSemanticColors _semanticColors(AppBrandPalette palette) =>
+      AppSemanticColors(
+        success: palette.success,
+        warning: palette.warning,
+        info: palette.info,
+        accent: palette.accent,
+        primaryDark: palette.primaryDark,
+      );
 
   // ── Color schemes ────────────────────────────────────────────────────────
 
-  static const _lightColorScheme = ColorScheme(
+  static ColorScheme _lightColorScheme(AppBrandPalette palette) => ColorScheme(
     brightness: Brightness.light,
-    primary: AppColors.primary,
-    onPrimary: AppColors.onPrimary,
-    primaryContainer: AppColors.primaryContainer,
-    onPrimaryContainer: AppColors.textPrimaryLight,
-    secondary: AppColors.secondary,
-    onSecondary: AppColors.onSecondary,
-    secondaryContainer: AppColors.secondaryContainer,
-    onSecondaryContainer: AppColors.textPrimaryLight,
-    error: AppColors.error,
-    onError: AppColors.onPrimary,
-    errorContainer: Color(0xFFFFDAD6),
-    onErrorContainer: Color(0xFF410002),
-    surface: AppColors.surfaceLight,
-    onSurface: AppColors.textPrimaryLight,
-    surfaceContainerHighest: AppColors.surfaceVariantLight,
-    onSurfaceVariant: AppColors.textSecondaryLight,
-    outline: AppColors.outlineLight,
-    outlineVariant: AppColors.outlineLight,
+    primary: palette.primary,
+    onPrimary: palette.onPrimary,
+    primaryContainer: palette.primaryContainer,
+    onPrimaryContainer: palette.textPrimaryLight,
+    secondary: palette.secondary,
+    onSecondary: palette.onSecondary,
+    secondaryContainer: palette.secondaryContainer,
+    onSecondaryContainer: palette.textPrimaryLight,
+    error: palette.error,
+    onError: palette.onPrimary,
+    errorContainer: const Color(0xFFFFDAD6),
+    onErrorContainer: const Color(0xFF410002),
+    surface: palette.surfaceLight,
+    onSurface: palette.textPrimaryLight,
+    surfaceContainerHighest: palette.surfaceVariantLight,
+    onSurfaceVariant: palette.textSecondaryLight,
+    outline: palette.outlineLight,
+    outlineVariant: palette.outlineLight,
   );
 
-  static const _darkColorScheme = ColorScheme(
+  static ColorScheme _darkColorScheme(AppBrandPalette palette) => ColorScheme(
     brightness: Brightness.dark,
-    primary: AppColors.primary,
-    onPrimary: AppColors.onPrimary,
-    primaryContainer: Color(0xFF5C3200),
-    onPrimaryContainer: AppColors.textPrimaryDark,
-    secondary: AppColors.secondary,
-    onSecondary: AppColors.onSecondary,
-    secondaryContainer: Color(0xFF33334D),
-    onSecondaryContainer: AppColors.textPrimaryDark,
-    error: AppColors.error,
-    onError: AppColors.onPrimary,
-    errorContainer: Color(0xFF93000A),
-    onErrorContainer: Color(0xFFFFDAD6),
-    surface: AppColors.surfaceDark,
-    onSurface: AppColors.textPrimaryDark,
-    surfaceContainerHighest: AppColors.surfaceVariantDark,
-    onSurfaceVariant: AppColors.textSecondaryDark,
-    outline: AppColors.outlineDark,
-    outlineVariant: AppColors.outlineDark,
+    primary: palette.primary,
+    onPrimary: palette.onPrimary,
+    primaryContainer: palette.primaryDark,
+    onPrimaryContainer: palette.textPrimaryDark,
+    secondary: palette.secondary,
+    onSecondary: palette.onSecondary,
+    secondaryContainer: palette.secondaryContainer,
+    onSecondaryContainer: palette.textPrimaryDark,
+    error: palette.error,
+    onError: palette.onPrimary,
+    errorContainer: const Color(0xFF93000A),
+    onErrorContainer: const Color(0xFFFFDAD6),
+    surface: palette.surfaceDark,
+    onSurface: palette.textPrimaryDark,
+    surfaceContainerHighest: palette.surfaceVariantDark,
+    onSurfaceVariant: palette.textSecondaryDark,
+    outline: palette.outlineDark,
+    outlineVariant: palette.outlineDark,
   );
 
   // ── Text theme ───────────────────────────────────────────────────────────
@@ -101,27 +123,31 @@ abstract final class AppTheme {
 
   // ── AppBar ───────────────────────────────────────────────────────────────
 
-  static AppBarTheme _appBarTheme({required bool isLight}) => AppBarTheme(
+  static AppBarTheme _appBarTheme({
+    required bool isLight,
+    required AppBrandPalette palette,
+  }) => AppBarTheme(
     elevation: 0,
     centerTitle: true,
-    backgroundColor: isLight ? AppColors.surfaceLight : AppColors.surfaceDark,
-    foregroundColor: isLight
-        ? AppColors.textPrimaryLight
-        : AppColors.textPrimaryDark,
+    backgroundColor: isLight ? palette.surfaceLight : palette.surfaceDark,
+    foregroundColor: isLight ? palette.textPrimaryLight : palette.textPrimaryDark,
     titleTextStyle: AppTypography.titleLarge.copyWith(
-      color: isLight ? AppColors.textPrimaryLight : AppColors.textPrimaryDark,
+      color: isLight ? palette.textPrimaryLight : palette.textPrimaryDark,
     ),
   );
 
   // ── Card ─────────────────────────────────────────────────────────────────
 
-  static CardThemeData _cardTheme({required bool isLight}) => CardThemeData(
+  static CardThemeData _cardTheme({
+    required bool isLight,
+    required AppBrandPalette palette,
+  }) => CardThemeData(
     elevation: 0,
-    color: isLight ? AppColors.surfaceLight : AppColors.surfaceDark,
+    color: isLight ? palette.surfaceLight : palette.surfaceDark,
     shape: RoundedRectangleBorder(
       borderRadius: AppRadius.lgBorderRadius,
       side: BorderSide(
-        color: isLight ? AppColors.outlineLight : AppColors.outlineDark,
+        color: isLight ? palette.outlineLight : palette.outlineDark,
       ),
     ),
     margin: const EdgeInsets.all(AppSpacing.sm),
@@ -129,56 +155,55 @@ abstract final class AppTheme {
 
   // ── Input decoration ─────────────────────────────────────────────────────
 
-  static InputDecorationTheme _inputDecorationTheme({required bool isLight}) =>
-      InputDecorationTheme(
-        filled: true,
-        fillColor: isLight
-            ? AppColors.surfaceVariantLight
-            : AppColors.surfaceVariantDark,
-        border: OutlineInputBorder(
-          borderRadius: AppRadius.mdBorderRadius,
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: AppRadius.mdBorderRadius,
-          borderSide: BorderSide(
-            color: isLight ? AppColors.outlineLight : AppColors.outlineDark,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: AppRadius.mdBorderRadius,
-          borderSide: const BorderSide(color: AppColors.primary, width: 2),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: AppRadius.mdBorderRadius,
-          borderSide: const BorderSide(color: AppColors.error),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: AppRadius.mdBorderRadius,
-          borderSide: const BorderSide(color: AppColors.error, width: 2),
-        ),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.lg,
-          vertical: AppSpacing.md,
-        ),
-        hintStyle: AppTypography.bodyMedium.copyWith(
-          color: isLight
-              ? AppColors.textDisabledLight
-              : AppColors.textDisabledDark,
-        ),
-      );
+  static InputDecorationTheme _inputDecorationTheme({
+    required bool isLight,
+    required AppBrandPalette palette,
+  }) => InputDecorationTheme(
+    filled: true,
+    fillColor: isLight ? palette.surfaceVariantLight : palette.surfaceVariantDark,
+    border: OutlineInputBorder(
+      borderRadius: AppRadius.mdBorderRadius,
+      borderSide: BorderSide.none,
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: AppRadius.mdBorderRadius,
+      borderSide: BorderSide(
+        color: isLight ? palette.outlineLight : palette.outlineDark,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: AppRadius.mdBorderRadius,
+      borderSide: BorderSide(color: palette.primary, width: 2),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: AppRadius.mdBorderRadius,
+      borderSide: BorderSide(color: palette.error),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: AppRadius.mdBorderRadius,
+      borderSide: BorderSide(color: palette.error, width: 2),
+    ),
+    contentPadding: const EdgeInsets.symmetric(
+      horizontal: AppSpacing.lg,
+      vertical: AppSpacing.md,
+    ),
+    hintStyle: AppTypography.bodyMedium.copyWith(
+      color: isLight ? palette.textDisabledLight : palette.textDisabledDark,
+    ),
+  );
 
   // ── Chip ─────────────────────────────────────────────────────────────────
 
-  static ChipThemeData _chipTheme({required bool isLight}) => ChipThemeData(
+  static ChipThemeData _chipTheme({
+    required bool isLight,
+    required AppBrandPalette palette,
+  }) => ChipThemeData(
     backgroundColor: isLight
-        ? AppColors.surfaceVariantLight
-        : AppColors.surfaceVariantDark,
-    selectedColor: AppColors.primaryContainer,
+        ? palette.surfaceVariantLight
+        : palette.surfaceVariantDark,
+    selectedColor: palette.primaryContainer,
     labelStyle: AppTypography.labelMedium,
-    side: BorderSide(
-      color: isLight ? AppColors.outlineLight : AppColors.outlineDark,
-    ),
+    side: BorderSide(color: isLight ? palette.outlineLight : palette.outlineDark),
     shape: RoundedRectangleBorder(borderRadius: AppRadius.fullBorderRadius),
     padding: const EdgeInsets.symmetric(
       horizontal: AppSpacing.md,
@@ -188,10 +213,12 @@ abstract final class AppTheme {
 
   // ── Buttons ──────────────────────────────────────────────────────────────
 
-  static final _elevatedButtonTheme = ElevatedButtonThemeData(
+  static ElevatedButtonThemeData _elevatedButtonTheme(
+    AppBrandPalette palette,
+  ) => ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: AppColors.primary,
-      foregroundColor: AppColors.onPrimary,
+      backgroundColor: palette.primary,
+      foregroundColor: palette.onPrimary,
       elevation: 0,
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.xl,
@@ -202,10 +229,12 @@ abstract final class AppTheme {
     ),
   );
 
-  static final _outlinedButtonTheme = OutlinedButtonThemeData(
+  static OutlinedButtonThemeData _outlinedButtonTheme(
+    AppBrandPalette palette,
+  ) => OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      foregroundColor: AppColors.primary,
-      side: const BorderSide(color: AppColors.primary),
+      foregroundColor: palette.primary,
+      side: BorderSide(color: palette.primary),
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.xl,
         vertical: AppSpacing.md,
@@ -215,23 +244,26 @@ abstract final class AppTheme {
     ),
   );
 
-  static final _textButtonTheme = TextButtonThemeData(
-    style: TextButton.styleFrom(
-      foregroundColor: AppColors.primary,
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.lg,
-        vertical: AppSpacing.sm,
-      ),
-      textStyle: AppTypography.labelLarge,
-    ),
-  );
+  static TextButtonThemeData _textButtonTheme(AppBrandPalette palette) =>
+      TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: palette.primary,
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg,
+            vertical: AppSpacing.sm,
+          ),
+          textStyle: AppTypography.labelLarge,
+        ),
+      );
 
   // ── Divider ──────────────────────────────────────────────────────────────
 
-  static DividerThemeData _dividerTheme({required bool isLight}) =>
-      DividerThemeData(
-        color: isLight ? AppColors.outlineLight : AppColors.outlineDark,
-        thickness: 1,
-        space: AppSpacing.lg,
-      );
+  static DividerThemeData _dividerTheme({
+    required bool isLight,
+    required AppBrandPalette palette,
+  }) => DividerThemeData(
+    color: isLight ? palette.outlineLight : palette.outlineDark,
+    thickness: 1,
+    space: AppSpacing.lg,
+  );
 }
