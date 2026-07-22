@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/showcase_appbar.dart';
 import 'banners_section.dart';
 import 'cards_section.dart';
+import 'list_item_cards_section.dart';
 import 'media_cards_section.dart';
 
 class MoleculesScreen extends StatelessWidget {
@@ -28,7 +29,12 @@ class MoleculesScreen extends StatelessWidget {
         padding: EdgeInsets.all(AppSpacing.lg),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [CardsSection(), MediaCardsSection(), BannersSection()],
+          children: [
+            CardsSection(),
+            MediaCardsSection(),
+            ListItemCardsSection(),
+            BannersSection(),
+          ],
         ),
       ),
     );
