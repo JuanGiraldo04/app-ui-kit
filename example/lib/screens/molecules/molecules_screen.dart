@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/showcase_appbar.dart';
 import 'banners_section.dart';
 import 'cards_section.dart';
+import 'detail_hero_images_section.dart';
 import 'list_item_cards_section.dart';
 import 'media_cards_section.dart';
 import 'meta_rows_section.dart';
@@ -34,6 +35,7 @@ class MoleculesScreen extends StatelessWidget {
           children: [
             CardsSection(),
             MediaCardsSection(),
+            DetailHeroImagesSection(),
             MetaRowsSection(),
             ListItemCardsSection(),
             ProgressStatsSection(),
