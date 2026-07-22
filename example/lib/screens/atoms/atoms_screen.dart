@@ -6,6 +6,7 @@ import 'avatars_section.dart';
 import 'buttons_section.dart';
 import 'chips_section.dart';
 import 'circle_icon_buttons_section.dart';
+import 'dropdowns_section.dart';
 import 'key_value_rows_section.dart';
 import 'loaders_section.dart';
 import 'status_badges_section.dart';
@@ -43,6 +44,7 @@ class AtomsScreen extends StatelessWidget {
             StatusBadgesSection(),
             StatusIconsSection(),
             CircleIconButtonsSection(),
+            DropdownsSection(),
             SteppersSection(),
             KeyValueRowsSection(),
             LoadersSection(),
