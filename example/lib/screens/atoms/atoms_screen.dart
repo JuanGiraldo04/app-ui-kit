@@ -8,6 +8,7 @@ import 'circle_icon_buttons_section.dart';
 import 'key_value_rows_section.dart';
 import 'loaders_section.dart';
 import 'status_badges_section.dart';
+import 'status_icons_section.dart';
 import 'steppers_section.dart';
 import 'text_fields_section.dart';
 
@@ -38,6 +39,7 @@ class AtomsScreen extends StatelessWidget {
             TextFieldsSection(),
             ChipsSection(),
             StatusBadgesSection(),
+            StatusIconsSection(),
             CircleIconButtonsSection(),
             SteppersSection(),
             KeyValueRowsSection(),
