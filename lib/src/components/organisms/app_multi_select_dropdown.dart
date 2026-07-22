@@ -4,6 +4,7 @@ import '../../tokens/tokens.dart';
 import '../atoms/app_button.dart';
 import '../atoms/app_text_field.dart';
 import '../shared/app_dropdown_item_row.dart';
+import '../shared/app_field_shell.dart';
 
 /// Select de selección múltiple real (checkboxes, estado `Set<T>`). Es un
 /// organism porque orquesta su propio bottom sheet con estado local
@@ -42,25 +43,21 @@ class AppMultiSelectDropdown<T> extends StatelessWidget {
         ? (hint ?? '')
         : values.map(itemLabel).join(', ');
 
-    return InkWell(
-      borderRadius: AppRadius.smBorderRadius,
+    return AppFieldShell(
       onTap: () => _openPicker(context),
-      child: InputDecorator(
-        decoration: const InputDecoration(),
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                displayText,
-                overflow: TextOverflow.ellipsis,
-                style: AppTypography.bodyMedium.copyWith(
-                  color: values.isEmpty ? scheme.onSurfaceVariant : null,
-                ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              displayText,
+              overflow: TextOverflow.ellipsis,
+              style: AppTypography.bodyMedium.copyWith(
+                color: values.isEmpty ? scheme.onSurfaceVariant : null,
               ),
             ),
-            Icon(Icons.arrow_drop_down, color: scheme.onSurfaceVariant),
-          ],
-        ),
+          ),
+          Icon(Icons.arrow_drop_down, color: scheme.onSurfaceVariant),
+        ],
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../tokens/tokens.dart';
 import '../shared/app_dropdown_item_row.dart';
+import '../shared/app_field_shell.dart';
 import 'app_text_field.dart';
 
 /// Select genérico. El look (fill, bordes, focus) lo hereda del
@@ -99,25 +100,21 @@ class _SearchableAppDropdownField<T> extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final String? selectedLabel = value != null ? itemLabel(value as T) : null;
 
-    return InkWell(
-      borderRadius: AppRadius.smBorderRadius,
+    return AppFieldShell(
       onTap: () => _openPicker(context),
-      child: InputDecorator(
-        decoration: const InputDecoration(),
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                selectedLabel ?? hint ?? '',
-                overflow: TextOverflow.ellipsis,
-                style: AppTypography.bodyMedium.copyWith(
-                  color: selectedLabel == null ? scheme.onSurfaceVariant : null,
-                ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              selectedLabel ?? hint ?? '',
+              overflow: TextOverflow.ellipsis,
+              style: AppTypography.bodyMedium.copyWith(
+                color: selectedLabel == null ? scheme.onSurfaceVariant : null,
               ),
             ),
-            Icon(Icons.arrow_drop_down, color: scheme.onSurfaceVariant),
-          ],
-        ),
+          ),
+          Icon(Icons.arrow_drop_down, color: scheme.onSurfaceVariant),
+        ],
       ),
     );
   }
