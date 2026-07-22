@@ -2,6 +2,7 @@ import 'package:app_ui_kit/app_ui_kit.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/showcase_appbar.dart';
+import 'avatars_section.dart';
 import 'buttons_section.dart';
 import 'chips_section.dart';
 import 'circle_icon_buttons_section.dart';
@@ -35,6 +36,7 @@ class AtomsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            AvatarsSection(),
             ButtonsSection(),
             TextFieldsSection(),
             ChipsSection(),

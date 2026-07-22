@@ -1,3 +1,4 @@
+export 'app_avatar.dart';
 export 'app_button.dart';
 export 'app_chip.dart';
 export 'app_circle_icon_button.dart';
