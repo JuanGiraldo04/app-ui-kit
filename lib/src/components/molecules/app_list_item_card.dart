@@ -3,22 +3,37 @@ import 'package:flutter/material.dart';
 import '../../tokens/tokens.dart';
 import 'app_card.dart';
 
-/// Card horizontal: thumbnail a la izquierda, contenido libre al centro y un
-/// widget final opcional (p. ej. un badge de estado). El consumidor solo pasa
-/// datos (`imageUrl`, `content`, `trailing`); el look —tamaño de la miniatura,
-/// bordes, estado de error de imagen— lo define el componente.
+/// Card horizontal: thumbnail a la izquierda, título + líneas secundarias al
+/// centro y un widget final opcional (p. ej. un badge de estado). El
+/// consumidor solo pasa datos — el look y la composición del contenido
+/// (tamaño de título según [imageSize], color de las líneas secundarias,
+/// miniatura, estado de error de imagen) los define el componente.
 class AppListItemCard extends StatelessWidget {
   const AppListItemCard({
     super.key,
     required this.imageUrl,
-    required this.content,
+    required this.title,
+    this.subtitleLines = const [],
+    this.detailLine,
+    this.titleMaxLines,
     this.trailing,
     this.imageSize = 56,
     this.onTap,
   });
 
   final String imageUrl;
-  final Widget content;
+  final String title;
+
+  /// Líneas secundarias (fecha, ubicación, etc), renderizadas en un color
+  /// atenuado, en el orden dado.
+  final List<String> subtitleLines;
+
+  /// Línea final opcional con más énfasis que [subtitleLines] (p. ej. un
+  /// resumen "N entradas · $total").
+  final String? detailLine;
+
+  /// `null` (default) deja el título sin límite de líneas.
+  final int? titleMaxLines;
   final Widget? trailing;
   final double imageSize;
   final VoidCallback? onTap;
@@ -26,6 +41,9 @@ class AppListItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final titleStyle = imageSize >= 64
+        ? AppTypography.titleMedium
+        : AppTypography.titleSmall;
 
     return AppCard(
       onTap: onTap,
@@ -51,7 +69,34 @@ class AppListItemCard extends StatelessWidget {
             ),
           ),
           const SizedBox(width: AppSpacing.md),
-          Expanded(child: content),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: titleStyle,
+                  maxLines: titleMaxLines,
+                  overflow: titleMaxLines != null
+                      ? TextOverflow.ellipsis
+                      : null,
+                ),
+                for (final line in subtitleLines) ...[
+                  const SizedBox(height: AppSpacing.xs),
+                  Text(
+                    line,
+                    style: AppTypography.bodySmall.copyWith(
+                      color: scheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+                if (detailLine != null) ...[
+                  const SizedBox(height: AppSpacing.xs),
+                  Text(detailLine!, style: AppTypography.bodySmall),
+                ],
+              ],
+            ),
+          ),
           if (trailing != null) ...[
             const SizedBox(width: AppSpacing.sm),
             trailing!,

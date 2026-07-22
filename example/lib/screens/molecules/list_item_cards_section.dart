@@ -12,73 +12,47 @@ class ListItemCardsSection extends StatelessWidget {
     return ShowcaseSection(
       title: 'List item cards',
       description:
-          'Card horizontal: thumbnail + contenido + widget final opcional.',
+          'Card horizontal: thumbnail + título + líneas secundarias + '
+          'widget final opcional. Todo dato, sin Widget libre.',
       children: [
         ShowcaseSubSection(
-          label: 'Con trailing (badge)',
+          label: 'Con trailing (badge) y línea de detalle',
           children: [
-            AppListItemCard(
+            const AppListItemCard(
               imageUrl: 'https://picsum.photos/seed/list-item-1/200/200',
-              content: const _ItemContent(),
-              trailing: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.sm,
-                  vertical: 2,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.success.withValues(alpha: 0.12),
-                  borderRadius: AppRadius.fullBorderRadius,
-                ),
-                child: Text(
-                  'Confirmada',
-                  style: AppTypography.labelSmall.copyWith(
-                    color: AppColors.success,
-                  ),
-                ),
+              title: 'Festival de Rock en el Parque',
+              titleMaxLines: 1,
+              subtitleLines: ['12 dic, 8:00 PM'],
+              detailLine: '3 entradas · \$255.000',
+              trailing: AppStatusBadge(
+                label: 'Confirmada',
+                variant: AppStatusBadgeVariant.success,
               ),
             ),
           ],
         ),
         ShowcaseSubSection(
-          label: 'Sin trailing',
+          label: 'Varias líneas secundarias, sin trailing',
           children: [
-            AppListItemCard(
+            const AppListItemCard(
               imageUrl: 'https://picsum.photos/seed/list-item-2/200/200',
-              content: const _ItemContent(),
+              title: 'Final de la Copa Regional',
+              titleMaxLines: 2,
+              subtitleLines: ['20 dic, 3:00 PM', 'Medellín'],
             ),
           ],
         ),
         ShowcaseSubSection(
-          label: 'Thumbnail más grande (imageSize: 64)',
+          label: 'Thumbnail más grande (imageSize: 64), título sin límite',
           children: [
             AppListItemCard(
               imageUrl: 'https://picsum.photos/seed/list-item-3/200/200',
               imageSize: 64,
+              title: 'Conferencia anual de tecnología y negocios',
+              subtitleLines: const ['20 dic, 3:00 PM', 'Bogotá'],
               onTap: () {},
-              content: const _ItemContent(),
             ),
           ],
-        ),
-      ],
-    );
-  }
-}
-
-class _ItemContent extends StatelessWidget {
-  const _ItemContent();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Título del ítem', style: AppTypography.titleSmall),
-        const SizedBox(height: AppSpacing.xs),
-        Text(
-          'Subtítulo · Detalle',
-          style: AppTypography.bodySmall.copyWith(
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
-          ),
         ),
       ],
     );
