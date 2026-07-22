@@ -7,6 +7,7 @@ import 'chips_section.dart';
 import 'circle_icon_buttons_section.dart';
 import 'loaders_section.dart';
 import 'status_badges_section.dart';
+import 'steppers_section.dart';
 import 'text_fields_section.dart';
 
 class AtomsScreen extends StatelessWidget {
@@ -37,6 +38,7 @@ class AtomsScreen extends StatelessWidget {
             ChipsSection(),
             StatusBadgesSection(),
             CircleIconButtonsSection(),
+            SteppersSection(),
             LoadersSection(),
           ],
         ),
