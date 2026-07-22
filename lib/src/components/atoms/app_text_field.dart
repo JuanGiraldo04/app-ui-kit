@@ -4,7 +4,7 @@ import '../../tokens/tokens.dart';
 
 enum AppTextFieldVariant { normal, error, disabled }
 
-class AppTextField extends StatelessWidget {
+class AppTextField extends StatefulWidget {
   const AppTextField({
     super.key,
     this.label,
@@ -18,6 +18,7 @@ class AppTextField extends StatelessWidget {
     this.leading,
     this.trailing,
     this.obscureText = false,
+    this.isPassword = false,
     this.keyboardType,
     this.maxLines = 1,
   });
@@ -33,30 +34,49 @@ class AppTextField extends StatelessWidget {
   final Widget? leading;
   final Widget? trailing;
   final bool obscureText;
+
+  /// Cuando es `true`, el campo se muestra oculto por defecto y agrega un
+  /// ícono de ojo (auto-gestionado) para alternar visibilidad — sin
+  /// necesidad de que quien lo consuma maneje su propio estado.
+  final bool isPassword;
   final TextInputType? keyboardType;
   final int? maxLines;
 
   @override
+  State<AppTextField> createState() => _AppTextFieldState();
+}
+
+class _AppTextFieldState extends State<AppTextField> {
+  late bool _obscureText = widget.isPassword ? true : widget.obscureText;
+
+  @override
   Widget build(BuildContext context) {
-    final isDisabled = variant == AppTextFieldVariant.disabled;
-    final hasError = variant == AppTextFieldVariant.error;
+    final isDisabled = widget.variant == AppTextFieldVariant.disabled;
+    final hasError = widget.variant == AppTextFieldVariant.error;
 
     return TextField(
-      controller: controller,
-      onChanged: onChanged,
-      onSubmitted: onSubmitted,
+      controller: widget.controller,
+      onChanged: widget.onChanged,
+      onSubmitted: widget.onSubmitted,
       enabled: !isDisabled,
-      obscureText: obscureText,
-      keyboardType: keyboardType,
-      maxLines: maxLines,
+      obscureText: _obscureText,
+      keyboardType: widget.keyboardType,
+      maxLines: widget.isPassword ? 1 : widget.maxLines,
       style: AppTypography.bodyMedium,
       decoration: InputDecoration(
-        labelText: label,
-        hintText: hint,
-        helperText: helperText,
-        errorText: hasError ? errorText : null,
-        prefixIcon: leading,
-        suffixIcon: trailing,
+        labelText: widget.label,
+        hintText: widget.hint,
+        helperText: widget.helperText,
+        errorText: hasError ? widget.errorText : null,
+        prefixIcon: widget.leading,
+        suffixIcon: widget.isPassword
+            ? IconButton(
+                icon: Icon(
+                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                ),
+                onPressed: () => setState(() => _obscureText = !_obscureText),
+              )
+            : widget.trailing,
       ),
     );
   }

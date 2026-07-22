@@ -30,9 +30,8 @@ class TextFieldsSection extends StatelessWidget {
             const SizedBox(height: AppSpacing.sm),
             const AppTextField(
               label: 'Contraseña',
-              hint: '••••••••',
-              trailing: Icon(Icons.visibility_off),
-              obscureText: true,
+              leading: Icon(Icons.lock_outline),
+              isPassword: true,
             ),
           ],
         ),
