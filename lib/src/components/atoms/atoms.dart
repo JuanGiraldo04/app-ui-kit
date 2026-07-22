@@ -1,6 +1,7 @@
 export 'app_button.dart';
 export 'app_chip.dart';
 export 'app_circle_icon_button.dart';
+export 'app_key_value_row.dart';
 export 'app_loader.dart';
 export 'app_status_badge.dart';
 export 'app_stepper.dart';
