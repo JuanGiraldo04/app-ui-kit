@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/showcase_appbar.dart';
 import 'buttons_section.dart';
-import 'text_fields_section.dart';
 import 'chips_section.dart';
 import 'loaders_section.dart';
+import 'status_badges_section.dart';
+import 'text_fields_section.dart';
 
 class AtomsScreen extends StatelessWidget {
   const AtomsScreen({
@@ -33,6 +34,7 @@ class AtomsScreen extends StatelessWidget {
             ButtonsSection(),
             TextFieldsSection(),
             ChipsSection(),
+            StatusBadgesSection(),
             LoadersSection(),
           ],
         ),
