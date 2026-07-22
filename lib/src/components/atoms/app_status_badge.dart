@@ -41,7 +41,10 @@ class AppStatusBadge extends StatelessWidget {
         color: color.withValues(alpha: 0.12),
         borderRadius: AppRadius.fullBorderRadius,
       ),
-      child: Text(label, style: AppTypography.labelSmall.copyWith(color: color)),
+      child: Text(
+        label,
+        style: AppTypography.labelSmall.copyWith(color: color),
+      ),
     );
   }
 }

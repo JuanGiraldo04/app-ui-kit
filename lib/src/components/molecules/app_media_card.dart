@@ -54,7 +54,11 @@ class AppMediaCard extends StatelessWidget {
                   ),
                 ),
                 if (overlay != null)
-                  Positioned(top: AppSpacing.sm, left: AppSpacing.sm, child: overlay!),
+                  Positioned(
+                    top: AppSpacing.sm,
+                    left: AppSpacing.sm,
+                    child: overlay!,
+                  ),
               ],
             ),
           ),

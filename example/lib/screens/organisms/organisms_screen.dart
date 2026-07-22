@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/showcase_appbar.dart';
 import 'empty_states_section.dart';
 import 'error_states_section.dart';
+import 'multi_select_dropdowns_section.dart';
 import 'ticket_cards_section.dart';
 
 class OrganismsScreen extends StatelessWidget {
@@ -32,6 +33,7 @@ class OrganismsScreen extends StatelessWidget {
             EmptyStatesSection(),
             ErrorStatesSection(),
             TicketCardsSection(),
+            MultiSelectDropdownsSection(),
           ],
         ),
       ),

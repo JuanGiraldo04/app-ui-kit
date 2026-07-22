@@ -130,7 +130,9 @@ abstract final class AppTheme {
     elevation: 0,
     centerTitle: true,
     backgroundColor: isLight ? palette.surfaceLight : palette.surfaceDark,
-    foregroundColor: isLight ? palette.textPrimaryLight : palette.textPrimaryDark,
+    foregroundColor: isLight
+        ? palette.textPrimaryLight
+        : palette.textPrimaryDark,
     titleTextStyle: AppTypography.titleLarge.copyWith(
       color: isLight ? palette.textPrimaryLight : palette.textPrimaryDark,
     ),
@@ -160,7 +162,9 @@ abstract final class AppTheme {
     required AppBrandPalette palette,
   }) => InputDecorationTheme(
     filled: true,
-    fillColor: isLight ? palette.surfaceVariantLight : palette.surfaceVariantDark,
+    fillColor: isLight
+        ? palette.surfaceVariantLight
+        : palette.surfaceVariantDark,
     border: OutlineInputBorder(
       borderRadius: AppRadius.mdBorderRadius,
       borderSide: BorderSide.none,
@@ -203,7 +207,9 @@ abstract final class AppTheme {
         : palette.surfaceVariantDark,
     selectedColor: palette.primaryContainer,
     labelStyle: AppTypography.labelMedium,
-    side: BorderSide(color: isLight ? palette.outlineLight : palette.outlineDark),
+    side: BorderSide(
+      color: isLight ? palette.outlineLight : palette.outlineDark,
+    ),
     shape: RoundedRectangleBorder(borderRadius: AppRadius.fullBorderRadius),
     padding: const EdgeInsets.symmetric(
       horizontal: AppSpacing.md,
