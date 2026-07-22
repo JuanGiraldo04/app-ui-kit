@@ -41,6 +41,21 @@ class _SteppersSectionState extends State<SteppersSection> {
           label: 'Deshabilitado',
           children: [const AppStepper(value: 3)],
         ),
+        ShowcaseSubSection(
+          label: 'Con label (fila label + control)',
+          children: [
+            AppStepper(
+              label: 'Cantidad',
+              value: _quantity,
+              onDecrement: _quantity > _min
+                  ? () => setState(() => _quantity--)
+                  : null,
+              onIncrement: _quantity < _max
+                  ? () => setState(() => _quantity++)
+                  : null,
+            ),
+          ],
+        ),
       ],
     );
   }

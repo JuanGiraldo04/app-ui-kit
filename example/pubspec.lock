@@ -6,7 +6,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: b653f601cb558793e67e891de140ea074b2925d9
+      resolved-ref: "76460e02f1239a121ec08f0acb90b5e3f562b86b"
       url: "https://github.com/JuanGiraldo04/app-ui-kit.git"
     source: git
     version: "0.0.1"
