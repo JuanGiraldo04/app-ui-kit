@@ -40,7 +40,11 @@ class AppProfileHeaderCard extends StatelessWidget {
   }
 
   Widget _buildContent(ColorScheme scheme) {
-    if (isLoading) return const AppLoader();
+    // Expanded impone un ancho tight sobre su hijo; sin Align, el SizedBox
+    // cuadrado de AppLoader se estira a ese ancho y el círculo sale ovalado.
+    if (isLoading) {
+      return const Align(alignment: Alignment.centerLeft, child: AppLoader());
+    }
 
     if (errorMessage != null) {
       return Text(errorMessage!, style: AppTypography.bodyMedium);
