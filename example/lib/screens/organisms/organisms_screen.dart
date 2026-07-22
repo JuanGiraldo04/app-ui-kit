@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/showcase_appbar.dart';
 import 'empty_states_section.dart';
 import 'error_states_section.dart';
+import 'ticket_cards_section.dart';
 
 class OrganismsScreen extends StatelessWidget {
   const OrganismsScreen({
@@ -27,7 +28,11 @@ class OrganismsScreen extends StatelessWidget {
         padding: EdgeInsets.all(AppSpacing.lg),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [EmptyStatesSection(), ErrorStatesSection()],
+          children: [
+            EmptyStatesSection(),
+            ErrorStatesSection(),
+            TicketCardsSection(),
+          ],
         ),
       ),
     );
