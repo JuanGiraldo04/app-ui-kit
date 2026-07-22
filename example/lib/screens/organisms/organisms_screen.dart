@@ -5,6 +5,7 @@ import '../../widgets/showcase_appbar.dart';
 import 'empty_states_section.dart';
 import 'error_states_section.dart';
 import 'event_cards_section.dart';
+import 'home_headers_section.dart';
 import 'multi_select_dropdowns_section.dart';
 import 'ticket_cards_section.dart';
 
@@ -35,6 +36,7 @@ class OrganismsScreen extends StatelessWidget {
             ErrorStatesSection(),
             TicketCardsSection(),
             EventCardsSection(),
+            HomeHeadersSection(),
             MultiSelectDropdownsSection(),
           ],
         ),
