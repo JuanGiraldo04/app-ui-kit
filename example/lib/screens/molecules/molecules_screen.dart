@@ -6,6 +6,7 @@ import 'banners_section.dart';
 import 'cards_section.dart';
 import 'list_item_cards_section.dart';
 import 'media_cards_section.dart';
+import 'meta_rows_section.dart';
 import 'progress_stats_section.dart';
 
 class MoleculesScreen extends StatelessWidget {
@@ -33,6 +34,7 @@ class MoleculesScreen extends StatelessWidget {
           children: [
             CardsSection(),
             MediaCardsSection(),
+            MetaRowsSection(),
             ListItemCardsSection(),
             ProgressStatsSection(),
             BannersSection(),
